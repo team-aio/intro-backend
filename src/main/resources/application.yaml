@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: intro
+
+springdoc:
+  swagger-ui:
+    groups-order: DESC
+    tags-sorter: alpha
+    path: /api-test
+    enabled: true
+  paths-to-match:
+    - /api/**
+  api-docs:
+    enabled: true
+ server:
+  port: 8000
+  address: 0.0.0.0
