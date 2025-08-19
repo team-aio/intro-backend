@@ -1,4 +1,4 @@
-package aio.intro.app
+package aio.intro.boot
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
