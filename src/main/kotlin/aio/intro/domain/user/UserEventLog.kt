@@ -7,10 +7,15 @@ import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.Index
 import jakarta.persistence.Table
 
 @Entity
-@Table(name = "user_event_log")
+@Table(
+    name = "user_event_log", indexes = [
+        Index(name = "idx_user_event_log_identifier", columnList = "identifier")
+    ]
+)
 class UserEventLog(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
