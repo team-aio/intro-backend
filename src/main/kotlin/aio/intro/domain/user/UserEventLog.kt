@@ -1,15 +1,16 @@
 package aio.intro.domain.user
 
+import aio.intro.domain.AbstractEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
 import jakarta.persistence.Index
 import jakarta.persistence.Table
+import org.hibernate.annotations.NaturalId
+import org.hibernate.annotations.NaturalIdCache
 
+@NaturalIdCache
 @Entity
 @Table(
     name = "user_event_log", indexes = [
@@ -17,10 +18,9 @@ import jakarta.persistence.Table
     ]
 )
 class UserEventLog(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    @NaturalId
     val identifier: String,
     val serviceName: String,
     @Enumerated(EnumType.STRING) val eventType: EventType,
     @Column(nullable = true) val metadata: String? = null,
-)
+) : AbstractEntity()
