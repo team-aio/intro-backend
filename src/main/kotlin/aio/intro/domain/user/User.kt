@@ -26,6 +26,9 @@ class User private constructor(
     companion object {
         fun create(identifier: String, serviceName: String, createdAt: LocalDateTime) =
             User(identifier, serviceName, createdAt)
+
+        fun register(request: UserEnterIntroRequest) =
+            User(request.identifier, request.serviceName, LocalDateTime.now())
     }
 
     fun activate() {
@@ -36,7 +39,7 @@ class User private constructor(
 
     fun deactivate() {
         check(this.userStatus == UserStatus.ACTIVE) { "이미 비활성화된 유저입니다." }
-        
+
         this.userStatus = UserStatus.INACTIVE
     }
 }
