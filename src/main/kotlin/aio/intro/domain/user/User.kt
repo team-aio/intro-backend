@@ -27,4 +27,16 @@ class User private constructor(
         fun create(identifier: String, serviceName: String, createdAt: LocalDateTime) =
             User(identifier, serviceName, createdAt)
     }
+
+    fun activate() {
+        check(this.userStatus == UserStatus.INACTIVE) { "이미 활성화된 유저입니다." }
+
+        this.userStatus = UserStatus.ACTIVE
+    }
+
+    fun deactivate() {
+        check(this.userStatus == UserStatus.ACTIVE) { "이미 비활성화된 유저입니다." }
+        
+        this.userStatus = UserStatus.INACTIVE
+    }
 }
