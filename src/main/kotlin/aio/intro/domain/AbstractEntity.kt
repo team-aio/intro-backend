@@ -13,10 +13,10 @@ import java.time.LocalDateTime
 abstract class AbstractEntity protected constructor(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-) {
     @CreatedDate
     @Column(updatable = false)
-    val created_at: LocalDateTime = LocalDateTime.now()
+    val createdAt: LocalDateTime,
+) {
 
     @LastModifiedDate
     var updated_at: LocalDateTime = LocalDateTime.now()

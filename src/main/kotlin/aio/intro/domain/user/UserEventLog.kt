@@ -9,6 +9,7 @@ import jakarta.persistence.Index
 import jakarta.persistence.Table
 import org.hibernate.annotations.NaturalId
 import org.hibernate.annotations.NaturalIdCache
+import java.time.LocalDateTime
 
 @NaturalIdCache
 @Entity
@@ -21,6 +22,7 @@ class UserEventLog(
     @NaturalId
     val identifier: String,
     val serviceName: String,
+    createdAt: LocalDateTime,
     @Enumerated(EnumType.STRING) val eventType: EventType,
     @Column(nullable = true) val metadata: String? = null,
-) : AbstractEntity()
+) : AbstractEntity(createdAt = createdAt)

@@ -6,6 +6,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.Table
 import org.hibernate.annotations.NaturalId
 import org.hibernate.annotations.NaturalIdCache
+import java.time.LocalDateTime
 
 @Entity
 @Table(name = "users")
@@ -16,7 +17,14 @@ class User private constructor(
     val identifier: String,
     @Column(name = "service_name")
     val serviceName: String,
-) : AbstractEntity() {
+
+    createdAt: LocalDateTime,
+) : AbstractEntity(createdAt = createdAt) {
     var userStatus: UserStatus = UserStatus.ACTIVE
         protected set
+
+    companion object {
+        fun create(identifier: String, serviceName: String, createdAt: LocalDateTime) =
+            User(identifier, serviceName, createdAt)
+    }
 }
