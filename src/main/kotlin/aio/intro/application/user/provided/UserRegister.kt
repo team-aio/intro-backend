@@ -1,4 +1,4 @@
-package aio.intro.application.provided
+package aio.intro.application.user.provided
 
 /**
  * 유저 등록에 관한 기능을 제공
