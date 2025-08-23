@@ -6,5 +6,4 @@ package aio.intro.application.user.provided
 interface UserRegister {
     fun register(identifier: String, serviceName: String)
     fun activate(identifier: String)
-    fun deactivate(identifier: String)
 }
