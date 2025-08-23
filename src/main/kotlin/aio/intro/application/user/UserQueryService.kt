@@ -13,4 +13,6 @@ class UserQueryService(
         return userRepository.findByIdentifier(identifier)
             ?: throw IllegalArgumentException("유저를 찾을 수 없습니다.")
     }
+
+    override fun existsBy(identifier: String): Boolean = userRepository.existsByIdentifier(identifier)
 }

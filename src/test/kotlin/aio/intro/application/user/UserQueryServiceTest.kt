@@ -36,10 +36,22 @@ class UserQueryServiceTest(
         "기존에 존재하지 않는 유저를 조회하면 IllegalArgumentException이 발생해야 한다." {
             val user = User.create("test1", "service1", LocalDateTime.now())
             userRepository.save(user)
-            
+
             shouldThrow<IllegalArgumentException> {
                 userQueryService.findBy("test2")
             }
+        }
+        "기존에 존재하는 유저를 조회하면, true를 반환해야 한다." {
+            val user = User.create("test1", "service1", LocalDateTime.now())
+            userRepository.save(user)
+
+            userQueryService.existsBy("test1") shouldBe true
+        }
+        "기존에 존재하지 않는 유저를 조회하면, false를 반환해야 한다." {
+            val user = User.create("test1", "service1", LocalDateTime.now())
+            userRepository.save(user)
+
+            userQueryService.existsBy("test2") shouldBe false
         }
     }
 }

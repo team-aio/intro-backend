@@ -7,4 +7,5 @@ import aio.intro.domain.user.User
  */
 interface UserFinder {
     fun findBy(identifier: String): User
+    fun existsBy(identifier: String): Boolean
 }
