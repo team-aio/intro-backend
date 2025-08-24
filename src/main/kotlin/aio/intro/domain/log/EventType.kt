@@ -1,4 +1,4 @@
-package aio.intro.domain.user
+package aio.intro.domain.log
 
 enum class EventType {
     FIRST_VISIT,
