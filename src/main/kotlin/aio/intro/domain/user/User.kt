@@ -3,6 +3,8 @@ package aio.intro.domain.user
 import aio.intro.domain.AbstractEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.Table
 import org.hibernate.annotations.NaturalId
 import org.hibernate.annotations.NaturalIdCache
@@ -20,6 +22,7 @@ class User private constructor(
 
     createdAt: LocalDateTime,
 ) : AbstractEntity(createdAt = createdAt) {
+    @Enumerated(EnumType.STRING)
     var userStatus: UserStatus = UserStatus.ACTIVE
         protected set
 
