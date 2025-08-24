@@ -12,5 +12,7 @@ class UserEventLogModifyService(
 ) : UserActionLogging {
     override fun logUserAction(logRequest: UserActionLoggingRequest) {
         val userEventLog = UserEventLog.createLogRequest(logRequest)
+        
+        userEventLogRepository.save(userEventLog)
     }
 }
