@@ -1,5 +1,6 @@
 package aio.intro.domain.log
 
+import aio.intro.adapter.webapi.dto.request.UserActionLoggingRequest
 import aio.intro.domain.AbstractEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
