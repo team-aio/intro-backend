@@ -1,6 +1,5 @@
 package aio.intro.domain.log
 
-import aio.intro.adapter.webapi.dto.request.UserActionLoggingRequest
 import aio.intro.domain.AbstractEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -39,14 +38,5 @@ class UserEventLog private constructor(
             mediaType: MediaType,
             createdAt: LocalDateTime = LocalDateTime.now()
         ) = UserEventLog(identifier, serviceName, createdAt, eventType, metaData, deviceType, mediaType)
-
-        fun createLogRequest(request: UserActionLoggingRequest) = create(
-            request.identifier,
-            request.serviceName,
-            EventType.from(request.eventType),
-            request.metaData,
-            DeviceType.from(request.deviceType),
-            MediaType.from(request.mediaType),
-        )
     }
 }
