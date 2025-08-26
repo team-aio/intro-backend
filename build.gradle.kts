@@ -25,7 +25,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0") // Swagger
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.11") // Swagger
     implementation("io.github.oshai:kotlin-logging-jvm:5.1.4") // logging
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
