@@ -1,4 +1,4 @@
-package aio.intro.adapter.integration.notion
+package aio.intro.adapter.integration.notion.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 

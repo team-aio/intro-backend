@@ -1,6 +1,5 @@
 package aio.intro.adapter.integration.notion.config
 
-import aio.intro.adapter.integration.notion.NotionProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
