@@ -39,4 +39,11 @@ class UserEventLog private constructor(
             createdAt: LocalDateTime = LocalDateTime.now()
         ) = UserEventLog(identifier, serviceName, createdAt, eventType, metaData, deviceType, mediaType)
     }
+
+    fun isFirstVisit(): Boolean = this.eventType == EventType.FIRST_VISIT
+
+    fun isEmailButtonClick(): Boolean {
+        return this.eventType == EventType.BUTTON_CLICK
+                && this.metadata?.contains("email") == true
+    }
 }
