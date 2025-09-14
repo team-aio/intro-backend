@@ -14,21 +14,19 @@ class UserEventLogModifyService(
     private val userEventLogFinder: UserEventLogFinder
 ) : UserActionLogging {
     override fun logUserAction(userEventLog: UserEventLog) {
-        if (!userEventLog.isVisit()) {
-            userEventLogRepository.save(userEventLog)
+        if (userEventLog.isVisit()) {
+            changeVisit(userEventLog)
+        }
+        
+        userEventLogRepository.save(userEventLog)
+    }
+
+    private fun changeVisit(userEventLog: UserEventLog) {
+        if (userEventLogFinder.existsBy(userEventLog.identifier, userEventLog.serviceName)) {
+            userEventLog.changeToRevisit()
             return
         }
 
-        saveWithVisitChange(userEventLog)
-    }
-
-    private fun saveWithVisitChange(userEventLog: UserEventLog) {
-        if (userEventLogFinder.existsBy(userEventLog.identifier, userEventLog.serviceName)) {
-            userEventLog.changeToRevisit()
-        }
-        
         userEventLog.changeToFirstVisit()
-
-        userEventLogRepository.save(userEventLog)
     }
 }
