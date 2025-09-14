@@ -6,7 +6,7 @@ import aio.intro.domain.log.MediaType
 import aio.intro.domain.log.UserEventLog
 import io.swagger.v3.oas.annotations.media.Schema
 
-@Schema(title = "유저 행동 로그 기록 Request", description = "유저 행동 로그 기록 요청")
+@Schema(title = "유저 행동 로그 기록 요청", description = "유저 행동 로그 기록 요청")
 data class UserActionLoggingRequest(
     @Schema(title = "식별자(세션값)", description = "유저를 식별할 수 있는 값", example = "test")
     val identifier: String,
@@ -22,7 +22,7 @@ data class UserActionLoggingRequest(
 
     @Schema(title = "메타데이터", description = "이벤트에 대한 추가 정보", example = "email")
     val metaData: String? = null,
-    
+
     @Schema(
         title = "디바이스 타입",
         description = "어떤 디바이스에서 발생한 이벤트인지",
