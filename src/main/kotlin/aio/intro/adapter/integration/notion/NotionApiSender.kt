@@ -4,7 +4,6 @@ import aio.intro.adapter.integration.notion.config.NotionProperties
 import aio.intro.adapter.integration.notion.dto.CreatePageRequest
 import aio.intro.adapter.integration.notion.dto.DatabaseProperties
 import aio.intro.adapter.integration.notion.dto.Parent
-import aio.intro.adapter.integration.notion.dto.property.DateProperty
 import aio.intro.adapter.integration.notion.dto.property.NumberProperty
 import aio.intro.adapter.integration.notion.dto.property.RichText
 import aio.intro.adapter.integration.notion.dto.property.TextContent
@@ -14,7 +13,6 @@ import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestClient
-import java.time.Instant
 
 private const val CREATE_PAGE_API = "/v1/pages"
 
@@ -47,7 +45,6 @@ class NotionApiSender(
                     id = TitleProperty(title = listOf(RichText(text = TextContent(serviceName + id)))),
                     visitorCount = NumberProperty(number = visitorCount.toDouble()),
                     emailButtonClickCount = NumberProperty(number = emailButtonClickCount.toDouble()),
-                    createdTime = DateProperty(createdTime = Instant.now())
                 )
             )
         )
