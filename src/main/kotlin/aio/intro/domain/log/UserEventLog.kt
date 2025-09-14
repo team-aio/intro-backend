@@ -7,11 +7,8 @@ import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
 import jakarta.persistence.Index
 import jakarta.persistence.Table
-import org.hibernate.annotations.NaturalId
-import org.hibernate.annotations.NaturalIdCache
 import java.time.LocalDateTime
 
-@NaturalIdCache
 @Entity
 @Table(
     name = "user_event_log", indexes = [
@@ -19,7 +16,6 @@ import java.time.LocalDateTime
     ]
 )
 class UserEventLog private constructor(
-    @NaturalId
     val identifier: String,
     val serviceName: String,
     createdAt: LocalDateTime,

@@ -10,6 +10,7 @@ import io.kotest.core.extensions.Extension
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.extensions.spring.SpringTestExtension
 import io.kotest.extensions.spring.SpringTestLifecycleMode
+import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.shouldBe
 import jakarta.transaction.Transactional
 import org.springframework.beans.factory.annotation.Autowired
@@ -32,9 +33,34 @@ class UserEventLogModifyServiceTest(
         )
         userEventLogModifyService.logUserAction(userEventLog)
 
-        val savedUserEventLog = userEventLogRepository.findByIdentifier(userEventLog.identifier)!!
+        val savedUserEventLog = userEventLogRepository.findByIdentifier(userEventLog.identifier).first()
 
         savedUserEventLog.eventType shouldBe EventType.FIRST_VISIT
+    }
+    "VISIT 이벤트를 저장하고, 같은 유저의 VISIT 이벤트를 저장하면, REVISIT 이벤트로 저장되어야 한다." {
+        val userEventLog = UserEventLog.create(
+            "test",
+            "test",
+            EventType.VISIT,
+            null,
+            DeviceType.MOBILE,
+            MediaType.EVERY_TIME
+        )
+        userEventLogModifyService.logUserAction(userEventLog)
+
+        val userEventLog2 = UserEventLog.create(
+            "test",
+            "test",
+            EventType.VISIT,
+            null,
+            DeviceType.MOBILE,
+            MediaType.EVERY_TIME
+        )
+        userEventLogModifyService.logUserAction(userEventLog2)
+
+        val savedUserEventLog = userEventLogRepository.findByIdentifier(userEventLog.identifier)
+
+        savedUserEventLog.map { it.eventType } shouldContain EventType.REVISIT
     }
 
 }) {

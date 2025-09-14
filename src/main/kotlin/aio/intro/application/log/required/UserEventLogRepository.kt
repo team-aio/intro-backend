@@ -14,5 +14,5 @@ interface UserEventLogRepository : Repository<UserEventLog, Long> {
 
     fun existsByIdentifierAndServiceName(identifier: String, serviceName: String): Boolean
 
-    fun findByIdentifier(identifier: String): UserEventLog?
+    fun findByIdentifier(identifier: String): List<UserEventLog>
 }
