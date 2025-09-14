@@ -50,6 +50,7 @@ class UserEventLog private constructor(
     }
 
     fun isFirstVisit(): Boolean = this.eventType == EventType.FIRST_VISIT
+    fun isVisit(): Boolean = this.eventType == EventType.VISIT
 
     fun isEmailButtonClick(): Boolean {
         return this.eventType == EventType.BUTTON_CLICK
