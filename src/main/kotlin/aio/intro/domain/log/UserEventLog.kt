@@ -23,11 +23,20 @@ class UserEventLog private constructor(
     val identifier: String,
     val serviceName: String,
     createdAt: LocalDateTime,
-    @Enumerated(EnumType.STRING) val eventType: EventType,
+    eventType: EventType,
     @Column(nullable = true) val metadata: String? = null,
     @Column(name = "device_type") @Enumerated(EnumType.STRING) val deviceType: DeviceType,
     @Column(name = "media_type") @Enumerated(EnumType.STRING) val mediaType: MediaType
 ) : AbstractEntity(createdAt = createdAt) {
+    @Enumerated(EnumType.STRING)
+    var eventType = eventType
+        protected set
+
+    init {
+        require(this.eventType != EventType.FIRST_VISIT) { "FIRST_VISIT은 생성시에 설정할 수 없습니다." }
+        require(this.eventType != EventType.REVISIT) { "REVISIT은 생성시에 설정할 수 없습니다." }
+    }
+
     companion object {
         fun create(
             identifier: String,
@@ -45,5 +54,15 @@ class UserEventLog private constructor(
     fun isEmailButtonClick(): Boolean {
         return this.eventType == EventType.BUTTON_CLICK
                 && this.metadata?.contains("email") == true
+    }
+
+    fun changeToRevisit() {
+        check(this.eventType == EventType.VISIT) { "이벤트 타입이 VISIT이 아닙니다." }
+        this.eventType = EventType.REVISIT
+    }
+
+    fun changeToFirstVisit() {
+        check(this.eventType == EventType.VISIT) { "이벤트 타입이 VISIT이 아닙니다." }
+        this.eventType = EventType.FIRST_VISIT
     }
 }

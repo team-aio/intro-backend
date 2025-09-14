@@ -20,7 +20,6 @@ class UserEventLogApi(
     @PostMapping("/users")
     fun logUserEvent(@RequestBody request: UserActionLoggingRequest): ApiResponse<Unit> {
         userActionLogging.logUserAction(request.toEntity())
-        
         return ApiResponse.ok(detail = "유저 행동이 정상적으로 기록되었습니다")
     }
 }

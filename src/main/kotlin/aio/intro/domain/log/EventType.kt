@@ -1,6 +1,7 @@
 package aio.intro.domain.log
 
 enum class EventType {
+    VISIT,
     FIRST_VISIT,
     REVISIT,
     EXIT,
@@ -9,6 +10,7 @@ enum class EventType {
 
     companion object {
         fun from(name: String) = when (name.lowercase()) {
+            "visit" -> VISIT
             "first_visit" -> FIRST_VISIT
             "revisit" -> REVISIT
             "exit" -> EXIT
